@@ -1,138 +1,739 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ashok Kumar Vundavalli | Principal DevOps/SRE</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ashok Kumar Vundavalli | Principal DevOps/SRE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --ink: #0e0e0e;
+    --ink-soft: #555;
+    --ink-muted: #888;
+    --surface: #ffffff;
+    --surface-2: #f7f6f3;
+    --surface-3: #f0ede6;
+    --border: rgba(0,0,0,0.1);
+    --accent: #1a3a5c;
+    --accent-2: #e8491e;
+    --accent-light: #eef3f8;
+    --radius: 12px;
+    --gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5vw;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1rem;
+    letter-spacing: -0.02em; color: var(--accent);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    color: var(--ink-soft); letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── LAYOUT ── */
+  section { padding: var(--gap) 5vw; }
+  .container { max-width: 1080px; margin: 0 auto; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 92vh;
+    display: flex; align-items: center;
+    background: var(--surface);
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -80px;
+    width: 520px; height: 520px; border-radius: 50%;
+    background: radial-gradient(circle, #dae6f0 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent-2);
+    border: 1px solid rgba(232,73,30,0.25);
+    background: rgba(232,73,30,0.05);
+    padding: 5px 14px; border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); }
+  h1.hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    max-width: 16ch;
+    margin-bottom: 1.5rem;
+  }
+  h1.hero-title span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.1rem; font-weight: 300; color: var(--ink-soft);
+    max-width: 52ch; margin-bottom: 2.5rem; line-height: 1.7;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block; padding: 0.85rem 2rem;
+    background: var(--accent); color: #fff;
+    font-weight: 500; font-size: 0.9rem;
+    border-radius: var(--radius); text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #122b46; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-block; padding: 0.85rem 2rem;
+    border: 1.5px solid var(--border); color: var(--ink);
+    font-weight: 500; font-size: 0.9rem;
+    border-radius: var(--radius); text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    margin-top: 4rem; padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem; font-weight: 700;
+    color: var(--accent); line-height: 1;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--ink-muted); margin-top: 4px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.75rem;
+  }
+  h2.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; letter-spacing: -0.025em;
+    color: var(--ink); margin-bottom: 2.5rem; line-height: 1.15;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--surface-2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+  }
+  .about-text p { color: var(--ink-soft); margin-bottom: 1rem; }
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+  .about-highlights {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .highlight-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .highlight-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--accent-light); display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 1.2rem;
+  }
+  .highlight-card h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 2px; }
+  .highlight-card p { font-size: 0.82rem; color: var(--ink-muted); }
+
+  /* ── IMPACT METRICS ── */
+  #impact { background: var(--accent); }
+  #impact .section-label { color: rgba(255,255,255,0.5); }
+  #impact h2.section-title { color: #fff; }
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;
+  }
+  .metric-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius); padding: 1.75rem;
+  }
+  .metric-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem; font-weight: 700; color: #fff; line-height: 1;
+  }
+  .metric-unit { font-size: 1.4rem; }
+  .metric-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem; }
+  .metric-tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 0.75rem;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;
+  }
+  .skill-group {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    font-size: 0.8rem; padding: 4px 10px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--ink-soft);
+  }
+
+  /* ── CASE STUDIES ── */
+  #case { background: var(--surface-2); }
+  .cases-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .case-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem 2.25rem;
+    display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 2rem; align-items: start;
+  }
+  .case-card:hover { border-color: rgba(26,58,92,0.3); }
+  .case-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.5rem; }
+  .case-card h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--ink); margin-bottom: 0.75rem; }
+  .case-card p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.6; }
+  .case-result {
+    background: var(--accent-light); border-radius: 10px;
+    padding: 1.25rem; text-align: center;
+  }
+  .case-result-num {
+    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700;
+    color: var(--accent); display: block; line-height: 1;
+  }
+  .case-result-desc { font-size: 0.78rem; color: var(--ink-muted); margin-top: 4px; }
+  .case-divider {
+    width: 1px; background: var(--border); margin: 0 auto; align-self: stretch;
+  }
+  .case-solution-title { font-size: 0.78rem; font-weight: 600; color: var(--accent-2); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--surface); }
+  .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 2rem; padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-period { font-size: 0.82rem; color: var(--ink-muted); padding-top: 4px; }
+  .exp-role { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--ink); }
+  .exp-company {
+    font-size: 0.9rem; color: var(--accent); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .exp-points li {
+    font-size: 0.88rem; color: var(--ink-soft); padding-left: 1rem; position: relative;
+  }
+  .exp-points li::before { content: '–'; position: absolute; left: 0; color: var(--ink-muted); }
+
+  /* ── CERTIFICATIONS ── */
+  #certs { background: var(--surface-2); }
+  .certs-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .cert-badge {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 0.9rem 1.25rem;
+  }
+  .cert-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--accent-light); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700; color: var(--accent); flex-shrink: 0;
+  }
+  .cert-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+  .cert-org { font-size: 0.75rem; color: var(--ink-muted); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+  }
+  .contact-text p { color: var(--ink-soft); margin-bottom: 1.25rem; font-size: 1rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.9rem; color: var(--ink-soft); text-decoration: none;
+    padding: 0.9rem 1.25rem; border: 1px solid var(--border);
+    border-radius: var(--radius); transition: border-color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link svg { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.5; }
+  .contact-cta {
+    background: var(--surface-2); border-radius: var(--radius);
+    padding: 2rem; border: 1px solid var(--border);
+  }
+  .contact-cta h3 {
+    font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .contact-cta p { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 1.5rem; }
+  .open-to {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;
+  }
+  .open-tag {
+    font-size: 0.78rem; padding: 5px 12px;
+    background: rgba(26,58,92,0.08); color: var(--accent);
+    border-radius: 999px; font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 5vw; text-align: center;
+    font-size: 0.8rem; color: var(--ink-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .case-card { grid-template-columns: 1fr; }
+    .case-divider { display: none; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .nav-links { display: none; }
+    h1.hero-title { font-size: 2.4rem; }
+  }
+</style>
+</head>
 <body>
 
-<header>
-  <div class="container nav">
-    <h1>Ashok Kumar</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#impact">Impact</a>
-      <a href="#skills">Skills</a>
-      <a href="#case">Case Studies</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">AKV</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#case">Case Studies</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<section class="hero">
+<!-- HERO -->
+<section id="hero">
   <div class="container">
-    <h2>Principal DevOps & Site Reliability Engineer</h2>
-    <p>Building resilient, scalable and cost-optimized cloud platforms (AWS | Azure)</p>
-
-    <div class="cta">
-      <a href="#contact" class="btn primary">Hire Me</a>
-      <a href="Ashok_Kumar_Resume.pdf" class="btn secondary" download>Download Resume</a>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="section">
-  <div class="container narrow">
-    <h2>About</h2>
-    <p>
-      I’m a Principal SRE with 19+ years in IT and 9+ years in DevOps, specializing in
-      cloud-native systems, reliability engineering, and enterprise-scale automation.
+    <div class="hero-eyebrow">Open to new opportunities — Hyderabad</div>
+    <h1 class="hero-title">Principal <span>DevOps &amp; SRE</span> Leader</h1>
+    <p class="hero-sub">
+      19+ years in IT · 9+ years in DevOps &amp; Cloud Infrastructure.<br />
+      I help engineering teams ship faster, stay reliable, and cut cloud spend — through platform engineering, SRE practices, and automation at enterprise scale.
     </p>
-    <p>
-      I work closely with engineering leadership to design highly available systems,
-      reduce operational risk, and improve system performance at scale.
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Let's Talk →</a>
+      <a href="https://vundavalliashok.github.io/Ashok_Kumar_Resume.pdf" class="btn-outline" target="_blank">Download Resume</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">19<span style="font-size:1.4rem">+</span></div>
+        <div class="stat-label">Years in IT</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">9<span style="font-size:1.4rem">+</span></div>
+        <div class="stat-label">Years in DevOps/SRE</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">99.9<span style="font-size:1.4rem">%+</span></div>
+        <div class="stat-label">Platform Uptime Achieved</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40<span style="font-size:1.4rem">%</span></div>
+        <div class="stat-label">Avg. Deployment Frequency Gain</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Engineering reliability at scale</h2>
+        <p>I'm a <strong>Principal SRE &amp; DevOps Lead</strong> with deep experience across cloud-native platforms on AWS and Azure. I specialize in transforming fragile, manual infrastructure into <strong>self-healing, observable, and highly automated systems</strong>.</p>
+        <p>Over nearly two decades I've partnered with engineering leadership across industries — financial services, healthcare, and SaaS — to drive cloud migrations, build internal developer platforms, and embed SRE culture that sticks.</p>
+        <p>Currently based in <strong>Hyderabad</strong>. Seeking a <strong>DevOps Lead / Manager</strong> role where I can combine hands-on architecture with team leadership.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon">☁️</div>
+          <div>
+            <h4>Cloud-Native Architecture</h4>
+            <p>AWS &amp; Azure platform design, multi-region resilience, cost-optimized FinOps practices</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">⚙️</div>
+          <div>
+            <h4>Platform Engineering &amp; IaC</h4>
+            <p>Terraform, ARM templates, golden-path internal developer platforms, self-service provisioning</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">📊</div>
+          <div>
+            <h4>Observability &amp; SRE</h4>
+            <p>SLO/SLA frameworks, Prometheus/Grafana/Splunk stacks, blameless postmortems, on-call culture</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🚀</div>
+          <div>
+            <h4>CI/CD &amp; Automation</h4>
+            <p>GitHub Actions, Azure DevOps, Jenkins pipelines — from commit to production in minutes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT METRICS -->
+<section id="impact">
+  <div class="container">
+    <div class="section-label">Quantified Impact</div>
+    <h2 class="section-title">Numbers that matter to hiring managers</h2>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-tag">Reliability</div>
+        <div class="metric-number">99.95<span class="metric-unit">%</span></div>
+        <div class="metric-desc">Platform uptime sustained across production EKS/AKS clusters</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-tag">Automation</div>
+        <div class="metric-number">70<span class="metric-unit">%</span></div>
+        <div class="metric-desc">Reduction in manual operational toil via CI/CD &amp; Terraform automation</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-tag">Delivery Speed</div>
+        <div class="metric-number">4×</div>
+        <div class="metric-desc">Increase in deployment frequency after standardising CI/CD pipelines</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-tag">Cloud Cost</div>
+        <div class="metric-number">35<span class="metric-unit">%</span></div>
+        <div class="metric-desc">Cloud spend reduction through rightsizing &amp; reserved instance strategy</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-tag">MTTR</div>
+        <div class="metric-number">60<span class="metric-unit">%</span></div>
+        <div class="metric-desc">Faster mean-time-to-recovery via centralised observability &amp; runbooks</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Technical Expertise</div>
+    <h2 class="section-title">Tools &amp; technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS (EKS, EC2, RDS, S3, Route53, IAM)</span>
+          <span class="skill-tag">Azure (AKS, App Service, Monitor)</span>
+          <span class="skill-tag">Multi-cloud architecture</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Containers &amp; Orchestration</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Kubernetes (EKS/AKS)</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Helm</span>
+          <span class="skill-tag">Kustomize</span>
+          <span class="skill-tag">ArgoCD</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">CI/CD &amp; Automation</div>
+        <div class="skill-tags">
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">GitOps</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Infrastructure as Code</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">ARM Templates</span>
+          <span class="skill-tag">Ansible</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Observability</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Prometheus</span>
+          <span class="skill-tag">Grafana</span>
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">Datadog</span>
+          <span class="skill-tag">ELK Stack</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Leadership &amp; Process</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SRE / SLO frameworks</span>
+          <span class="skill-tag">FinOps</span>
+          <span class="skill-tag">ServiceNow / ZenDesk</span>
+          <span class="skill-tag">Incident Management</span>
+          <span class="skill-tag">Agile / Scrum</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="case">
+  <div class="container">
+    <div class="section-label">Case Studies</div>
+    <h2 class="section-title">Selected work &amp; impact</h2>
+    <div class="cases-grid">
+
+      <div class="case-card">
+        <div>
+          <div class="case-label">Challenge</div>
+          <h3>Enterprise Cloud Migration</h3>
+          <p>Legacy on-premises workloads limited scalability. Manual provisioning led to 3–5 day release cycles, frequent outages during deployments, and no DR capability.</p>
+        </div>
+        <div class="case-divider"></div>
+        <div>
+          <div class="case-solution-title">Solution</div>
+          <p>Architected lift-and-shift then re-platform strategy across AWS &amp; Azure. Introduced Terraform modules for repeatable infra, multi-AZ deployments, and blue-green CI/CD pipelines via GitHub Actions. Built centralised observability with Prometheus + Grafana.</p>
+        </div>
+        <div class="case-result">
+          <span class="case-result-num">4×</span>
+          <div class="case-result-desc">Release frequency; 99.95% uptime post-migration</div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div>
+          <div class="case-label">Challenge</div>
+          <h3>Kubernetes Platform Engineering</h3>
+          <p>Microservices teams each managed their own ad-hoc deployments. No standardisation, no SLOs, alert fatigue from 300+ noisy monitors, and MTTR averaging 4+ hours.</p>
+        </div>
+        <div class="case-divider"></div>
+        <div>
+          <div class="case-solution-title">Solution</div>
+          <p>Built an internal developer platform on AKS/EKS with Helm charts, ArgoCD GitOps, and a self-service portal. Defined SLOs per service. Consolidated monitoring into a unified Grafana dashboard with actionable alerting and on-call runbooks.</p>
+        </div>
+        <div class="case-result">
+          <span class="case-result-num">60%</span>
+          <div class="case-result-desc">Reduction in MTTR; on-call load halved</div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div>
+          <div class="case-label">Challenge</div>
+          <h3>Cloud Cost Optimisation</h3>
+          <p>Uncontrolled cloud sprawl resulted in 40% of cloud spend on idle or over-provisioned resources. No tagging strategy, no budget alerts, no accountability per team.</p>
+        </div>
+        <div class="case-divider"></div>
+        <div>
+          <div class="case-solution-title">Solution</div>
+          <p>Implemented FinOps practices: rightsizing analysis, reserved instance purchasing, automated shutdown of non-prod environments after hours, and per-team cost dashboards. Introduced mandatory tagging policy enforced via Terraform.</p>
+        </div>
+        <div class="case-result">
+          <span class="case-result-num">35%</span>
+          <div class="case-result-desc">Cloud cost reduction within 6 months</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career Timeline</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-timeline">
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">2020 – Present</div>
+        </div>
+        <div>
+          <div class="exp-role">Principal DevOps / SRE Lead</div>
+          <div class="exp-company">[ Current Organisation ] · Hyderabad</div>
+          <ul class="exp-points">
+            <li>Led a team of 8 DevOps/SRE engineers across AWS &amp; Azure environments</li>
+            <li>Designed multi-region EKS platform serving 50+ microservices with 99.95% SLA</li>
+            <li>Reduced cloud spend by 35% through FinOps practices and automated governance</li>
+            <li>Standardised CI/CD via GitHub Actions; cut deploy time from 45 min to under 10 min</li>
+            <li>Defined &amp; owned SLO/SLA framework and incident management process</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">2016 – 2020</div>
+        </div>
+        <div>
+          <div class="exp-role">Senior DevOps Engineer</div>
+          <div class="exp-company">[ Previous Organisation ] · Hyderabad</div>
+          <ul class="exp-points">
+            <li>Built IaC foundations with Terraform; provisioned 200+ cloud resources with zero manual steps</li>
+            <li>Designed and maintained Jenkins/Azure DevOps pipelines for 15+ product teams</li>
+            <li>Led on-prem to Azure cloud migration for an enterprise ERP workload (500+ VMs)</li>
+            <li>Implemented Splunk-based log aggregation and alerting platform</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">2007 – 2016</div>
+        </div>
+        <div>
+          <div class="exp-role">Systems / Infrastructure Engineer</div>
+          <div class="exp-company">[ Earlier Roles ] · Various</div>
+          <ul class="exp-points">
+            <li>9 years building data centre infrastructure, networking, virtualisation (VMware), and operations</li>
+            <li>Transitioned into automation and scripting; early adoption of Ansible and shell-based provisioning</li>
+            <li>ITIL-aligned incident, change, and problem management via ServiceNow</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="container">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-badge">
+        <div class="cert-icon">AWS</div>
+        <div>
+          <div class="cert-name">AWS Certified Solutions Architect</div>
+          <div class="cert-org">Amazon Web Services</div>
+        </div>
+      </div>
+      <div class="cert-badge">
+        <div class="cert-icon">AWS</div>
+        <div>
+          <div class="cert-name">AWS Certified DevOps Engineer – Professional</div>
+          <div class="cert-org">Amazon Web Services</div>
+        </div>
+      </div>
+      <div class="cert-badge">
+        <div class="cert-icon">AZ</div>
+        <div>
+          <div class="cert-name">Microsoft Certified: Azure Administrator (AZ-104)</div>
+          <div class="cert-org">Microsoft Azure</div>
+        </div>
+      </div>
+      <div class="cert-badge">
+        <div class="cert-icon">CKA</div>
+        <div>
+          <div class="cert-name">Certified Kubernetes Administrator (CKA)</div>
+          <div class="cert-org">CNCF / Linux Foundation</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 1.25rem; font-size: 0.82rem; color: var(--ink-muted);">
+      <em>Note: Update certification section with your actual credentials before publishing.</em>
     </p>
   </div>
 </section>
 
-<section id="impact" class="section light">
+<!-- CONTACT -->
+<section id="contact">
   <div class="container">
-    <h2>Key Impact</h2>
-
-    <div class="grid impact">
-      <div class="impact-card">
-        <h3>Cloud Migration</h3>
-        <p>Led migration of enterprise workloads from on-prem to AWS & Azure.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Let's build something reliable</h2>
+        <p class="contact-text"><p>I'm actively exploring <strong>DevOps Lead / Manager</strong> roles in Hyderabad. If you're building a platform engineering or SRE function and need someone who can lead the team and get into the weeds — let's talk.</p></p>
+        <div class="contact-links">
+          <a href="mailto:vundavalliashok@gmail.com" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l9 6 9-6M3 8v11a1 1 0 001 1h16a1 1 0 001-1V8M3 8a1 1 0 011-1h16a1 1 0 011 1"/></svg>
+            vundavalliashok@gmail.com
+          </a>
+          <a href="tel:+919849473507" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            +91 98494 73507
+          </a>
+          <a href="https://www.linkedin.com/in/vundavalliashok" target="_blank" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/vundavalliashok
+          </a>
+          <a href="https://github.com/vundavalliashok" target="_blank" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            github.com/vundavalliashok
+          </a>
+        </div>
       </div>
-
-      <div class="impact-card">
-        <h3>Kubernetes Scale</h3>
-        <p>Designed and managed AKS/EKS clusters for microservices platforms.</p>
-      </div>
-
-      <div class="impact-card">
-        <h3>Automation</h3>
-        <p>Reduced manual effort via CI/CD, Terraform, and API automation.</p>
-      </div>
-
-      <div class="impact-card">
-        <h3>Reliability</h3>
-        <p>Improved uptime, observability, and incident response processes.</p>
+      <div class="contact-cta">
+        <h3>Open to opportunities</h3>
+        <p>Seeking roles where I can lead DevOps/SRE teams, influence platform strategy, and mentor engineers — while staying close to the technical work.</p>
+        <div class="open-to">
+          <span class="open-tag">DevOps Lead</span>
+          <span class="open-tag">SRE Manager</span>
+          <span class="open-tag">Platform Engineering Lead</span>
+          <span class="open-tag">Cloud Infrastructure Lead</span>
+          <span class="open-tag">Hyderabad preferred</span>
+          <span class="open-tag">Open to hybrid</span>
+        </div>
+        <a href="https://vundavalliashok.github.io/Ashok_Kumar_Resume.pdf" target="_blank" class="btn-primary" style="display:inline-block">Download Full Resume →</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="skills" class="section">
-  <div class="container">
-    <h2>Technical Expertise</h2>
-
-    <div class="grid skills">
-      <div><strong>Cloud</strong><br>AWS, Azure</div>
-      <div><strong>Containers</strong><br>Docker, Kubernetes</div>
-      <div><strong>CI/CD</strong><br>GitHub Actions, Azure DevOps, Jenkins</div>
-      <div><strong>IaC</strong><br>Terraform, ARM</div>
-      <div><strong>Monitoring</strong><br>Prometheus, Grafana, Splunk</div>
-      <div><strong>ITSM</strong><br>ServiceNow, ZenDesk</div>
-    </div>
-  </div>
-</section>
-
-<section id="case" class="section light">
-  <div class="container">
-    <h2>Case Studies</h2>
-
-    <div class="case">
-      <h3>Enterprise Cloud Migration</h3>
-      <p><strong>Problem:</strong> Legacy on-prem systems limiting scalability.</p>
-      <p><strong>Solution:</strong> Migrated workloads to AWS & Azure using Terraform and CI/CD pipelines.</p>
-      <p><strong>Impact:</strong> Improved scalability, reduced operational overhead.</p>
-    </div>
-
-    <div class="case">
-      <h3>Kubernetes Platform Engineering</h3>
-      <p><strong>Problem:</strong> Microservices deployment complexity.</p>
-      <p><strong>Solution:</strong> Built AKS/EKS clusters with automated deployments.</p>
-      <p><strong>Impact:</strong> Faster releases and improved system resilience.</p>
-    </div>
-
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <div class="container narrow">
-    <h2>Contact</h2>
-    <p>Email: vundavalliashok@gmail.com</p>
-    <p>Phone: +91 9849473507</p>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Ashok Kumar Vundavalli</p>
+  <p>© 2026 Ashok Kumar Vundavalli · Built with purpose, not just templates.</p>
 </footer>
-
-<script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href'))
-      .scrollIntoView({ behavior: 'smooth' });
-  });
-});
-</script>
 
 </body>
 </html>
